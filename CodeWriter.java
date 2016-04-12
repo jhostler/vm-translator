@@ -16,7 +16,7 @@ public class CodeWriter {
 		}
 	}
 	
-	public void setFileName(String fileName){
+	/*public void setFileName(String fileName){
 		
 	}
 	
@@ -41,9 +41,9 @@ public class CodeWriter {
         }
 	}
 	
-	public void writePushPop(command, String segment, Int index){
+	public void writePushPop(String command, String segment, int index){
 		
-	}
+	}*/
 	
 	public void close(){
 		translate.close();

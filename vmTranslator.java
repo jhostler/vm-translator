@@ -11,10 +11,11 @@ import java.io.File;
 
         }
 		else{
+			
 			File fileIn = new File(args[0]);
 			
 			String fileName = fileIn.getName();
-			String path = fileIn.getAbsolutePath();                   //create .asm file 
+			String path = fileIn.getAbsolutePath();         //create .asm file 
 			
 			String fileOutPath = fileIn.getAbsolutePath().substring(0, fileIn.getAbsolutePath().lastIndexOf(".")) + ".asm";
 			
