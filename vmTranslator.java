@@ -14,6 +14,13 @@ import java.io.File;
 			
 			File fileIn = new File(args[0]);
 			
+			ParseVM parser = new ParseVM(fileIn);
+			
+			while(parser.hasMoreCommands()){
+				parser.parseCommand();
+				parser.advance();
+			}
+			
 			String fileName = fileIn.getName();
 			String path = fileIn.getAbsolutePath();         //create .asm file 
 			

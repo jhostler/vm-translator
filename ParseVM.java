@@ -9,6 +9,9 @@ import java.util.regex.Pattern;
 public class ParseVM {
 	private String command;
 	private Scanner code;
+	private String comType;
+	private String arg1;
+	private int arg2;
 	public static ArrayList<String> arithmetics = new ArrayList<String>();
 	static{
 		arithmetics.add("push");
@@ -27,6 +30,7 @@ public class ParseVM {
 	public ParseVM(File fileIn){
 		try{
 		code = new Scanner(fileIn);
+		
 		String curLine="";
 		String readIn="";
 		
@@ -53,16 +57,51 @@ public class ParseVM {
 	public void parseCommand(){
 		String[] sections = command.split(" ");
 		
-		switch(sections[0]){
-			case "add": case "sub": case "neg": case "eq": case "gt": case "lt": case "and": case "or": case "not":
-				writeArithmetic("add");
-				break;
-			case "push": case "pop":
-				writePushPop("push")
-				break;
+		if (arithmetics.contains(sections[0])){
+			comType = "arithmetic";
+			arg1 = sections[0];
+		}
+		else if (sections[0].equals("return")){
+			comType = "return";
+			arg1 = sections[0];
+		}
+		else{ 
+			arg1 = sections[1];
+			
+			if (sections[0].equals("push")){
+				comType = "push";
+			}
+			else if (sections[0].equals("pop")){
+				comType = "pop";
+			}
+			else if (sections[0].equals("label")){
+				comType = "label";
+			}
+			else if (sections[0].equals("if")){
+				comType = "if";
+			}
+			else if (sections[0].equals("goto")){
+				comType = "goto";
+			}
+			else if (sections[0].equals("function")){
+				comType = "function";
+			}
+			else if (sections[0].equals("call")){
+				comType = "call";
+			}
+			
+			if (comType.equals("push") || comType.equals("pop") || comType.equals("function") || comType.equals("call")){
+				try {
+						arg2 = Integer.parseInt(sections[2]);
+				}catch (Exception e){
+					throw new IllegalArgumentException("Argument2 is not an integer!");
+				}
+			}
+		}
 	}
 	/*public commandType(){
-		
-		}	
-	}*/
+	
+	}
+	*/
+	
 }
