@@ -83,19 +83,14 @@ public class ParseVM {
 			else if (sections[0].equals("goto")){
 				comType = "goto";
 			}
+		else if (sections[0].equals("if-goto")){
+					comType = "if-goto";
+			}
 			else if (sections[0].equals("function")){
 				comType = "function";
 			}
 			else if (sections[0].equals("call")){
 				comType = "call";
-			}
-			
-			if (comType.equals("push") || comType.equals("pop") || comType.equals("function") || comType.equals("call")){
-				try {
-						arg2 = Integer.parseInt(sections[2]);
-				}catch (Exception e){
-					throw new IllegalArgumentException("Argument2 is not an integer!");
-				}
 			}
 		}
 	}
