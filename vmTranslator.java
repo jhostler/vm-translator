@@ -42,6 +42,9 @@ import java.io.File;
 					System.out.println("PuPo");
 					translate.writePushPop(type, parser.arg1(), parser.arg2());
 					
+				}else if (type.equals("label") || type.equals("if-goto") || type.equals("goto")){
+					System.out.println("Branch");
+					translate.writeLabel(type, parser.arg1());
 				}
 			}
 			System.out.println("done");

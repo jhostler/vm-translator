@@ -68,6 +68,22 @@ public class CodeWriter {
 		
 	}
 	
+	public void writeLabel(String command, String location){
+		if (command.equals("label")){
+			translate.print("("+location+")\n");
+		}
+		else if (command.equals("if-goto")){
+			translate.print("@SP\nAM=M-1\nD=M\nA=A-1\n@"+location+"\nD;JNE\n");
+		}
+	else if (command.equals("goto")){
+			translate.print("@"+location+"\n0;JMP\n");
+		
+		}
+		else{
+			translate.print("no type match");
+		}
+	}
+	
 	public void writePushPop(String command, String segment, int index){
 		if(command.equals("push")){
 			if (segment.equals("constant")){
